@@ -1,0 +1,33 @@
+
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+<img src="{% static 'shop/banner.jpg' %}" 
+     class="img-fluid mb-4"
+     style="width:100%; max-height:300px; object-fit:cover;">
+
+<h1 class="text-center mb-4">🍰 Tiệm bánh của tôi</h1>
+
+<div class="row">
+    {% for p in products %}
+    <div class="col-6 col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+
+            <a href="/product/{{ p.id }}/">
+                <img src="{{ p.image.url }}" class="card-img-top" style="height:200px; object-fit:cover;">
+            </a>
+
+            <div class="card-body text-center">
+                <h5>
+                    <a href="/product/{{ p.id }}/">{{ p.name }}</a>
+                </h5>
+                <p class="text-danger fw-bold">{{ p.price }}đ</p>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
