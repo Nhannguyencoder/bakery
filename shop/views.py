@@ -34,8 +34,11 @@ def product_detail(request, id):
     product = Product.objects.get(id=id)
     cart = request.session.get('cart', {})
     cart_count = sum(cart.values())
+    featured_products = Product.objects.filter(is_featured=True)
+
     return render(request, 'shop/detail.html', {
         'product': product,
+        'featured_products': featured_products,
         'cart_count': cart_count,
     })
 

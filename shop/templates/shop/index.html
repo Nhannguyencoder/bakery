@@ -42,6 +42,57 @@
 
 </div>
 
+<div class="row align-items-center mb-5">
+
+    <div class="col-md-6" data-aos="fade-right">
+        <img src="{% static 'shop/about.jpg' %}" class="img-fluid rounded shadow">
+    </div>
+
+    <div class="col-md-6" data-aos="fade-left">
+        <h3>🍰 Về Kỳ Duyên Bakery</h3>
+        <p>
+            Chúng tôi chuyên cung cấp bánh ngọt tươi mỗi ngày với nguyên liệu cao cấp,
+            đảm bảo chất lượng và hương vị tuyệt vời.
+        </p>
+
+        <ul>
+            <li>✔ Nguyên liệu sạch</li>
+            <li>✔ Làm mới mỗi ngày</li>
+            <li>✔ Giao nhanh toàn khu vực</li>
+        </ul>
+
+        <a href="#" class="btn btn-dark mt-2">Xem thêm</a>
+    </div>
+
+</div>
+
+
+<div class="text-center mb-5">
+    <h3>⭐ Vì sao chọn chúng tôi</h3>
+</div>
+
+<div class="row text-center mb-5">
+
+    <div class="col-md-4" data-aos="zoom-in">
+        <h1>🎂</h1>
+        <h5>Bánh tươi mỗi ngày</h5>
+        <p>Luôn đảm bảo chất lượng tốt nhất</p>
+    </div>
+
+    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+        <h1>🚚</h1>
+        <h5>Giao hàng nhanh</h5>
+        <p>Chỉ từ 1–2 giờ trong nội thành</p>
+    </div>
+
+    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+        <h1>💯</h1>
+        <h5>Đảm bảo chất lượng</h5>
+        <p>Hoàn tiền nếu không hài lòng</p>
+    </div>
+
+</div>
+
 <!-- HERO -->
 <div class="p-5 mb-4 bg-light rounded-3 text-center">
     <h1>🍰 Tiệm bánh ngọt tươi mỗi ngày</h1>
@@ -60,7 +111,49 @@
         </a>
     {% endfor %}
 </div>
+<!-- FEATURED / BEST SELLER -->
+<div class="text-center mt-5 mb-4">
+    <h3>🔥 Bán chạy nhất</h3>
+    <hr style="width:60px; border:2px solid orange; margin:auto;">
+</div>
 
+<div class="row">
+    {% for p in featured_products %}
+        <div class="col-6 col-md-3 mb-4" data-aos="zoom-in">
+            <div class="card shadow-sm h-100 product-card position-relative" style="cursor:pointer;">
+
+                {% if p.sale_price %}
+                <span class="badge bg-danger position-absolute" style="top:10px; left:10px;">
+                    SALE
+                </span>
+                {% endif %}
+
+                <img src="{{ p.image.url }}" class="card-img-top product-img">
+
+                <div class="card-body text-center">
+                    <h6>{{ p.name }}</h6>
+                    <p class="fw-bold">
+                    {% if p.sale_price %}
+                        <span class="text-danger">{{ p.sale_price }}đ</span>
+                        <del class="text-muted">{{ p.price }}đ</del>
+                    {% else %}
+                        <span class="text-danger">{{ p.price }}đ</span>
+                    {% endif %}
+                    </p>
+                    <a href="/product/{{ p.id }}/" class="btn btn-dark btn-sm mt-2">
+                        Xem
+                    </a>
+                </div>
+                <!-- BUTTON HOVER -->
+                <div class="add-cart-hover position-absolute w-100 text-center">
+                    <a href="/add-to-cart/{{ p.id }}/" class="btn btn-warning btn-sm">
+                        🛒 Thêm vào giỏ
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 <!-- PRODUCTS -->
 <div class="text-center mb-4">
     <h3>🔥 Sản phẩm nổi bật</h3>
@@ -72,13 +165,20 @@
         {% for p in products %}
             {% if p.category.id == c.id %}
                 <div class="col-6 col-md-3 mb-4" data-aos="zoom-in">
-                    <div class="card shadow-sm h-100">
-
+                    <div class="card shadow-sm h-100" style="cursor:pointer;">
+                        
                         <img src="{{ p.image.url }}" class="card-img-top product-img">
 
                         <div class="card-body text-center">
                             <h6>{{ p.name }}</h6>
-                            <p class="text-danger">{{ p.price }}đ</p>
+                            <p>
+                            {% if p.sale_price %}
+                                <span class="text-danger">{{ p.sale_price }}đ</span>
+                                <del class="text-muted">{{ p.price }}đ</del>
+                            {% else %}
+                                <span class="text-danger">{{ p.price }}đ</span>
+                            {% endif %}
+                            </p>
                         </div>
 
                     </div>
@@ -90,35 +190,46 @@
 <div class="row">
     {% for p in products %}
         <div class="col-6 col-md-3 mb-4" data-aos="zoom-in">
-            <div class="card shadow-sm h-100 product-card position-relative">
+            <div class="card shadow-sm h-100 product-card position-relative" style="cursor:pointer;">
 
-                <!-- BADGE -->
-                <span class="badge bg-danger position-absolute" 
-                        style="top:10px; left:10px;">
-                    HOT
+                {% if p.sale_price %}
+                <span class="badge bg-danger position-absolute" style="top:10px; left:10px;">
+                    SALE
                 </span>
+                {% endif %}
 
                 <img src="{{ p.image.url }}" class="card-img-top product-img">
 
                 <div class="card-body text-center">
                     <h6>{{ p.name }}</h6>
 
-                    <p class="text-danger fw-bold">
-                        {{ p.price }}đ
-                    </p>
-
-                    <a href="/add-to-cart/{{ p.id }}/" class="btn btn-warning btn-sm">
-                        🛒 Thêm vào giỏ
-                    </a>
-
+                <p class="fw-bold">
+                {% if p.sale_price %}
+                    <span class="text-danger">{{ p.sale_price }}đ</span>
+                    <del class="text-muted">{{ p.price }}đ</del>
+                {% else %}
+                    <span class="text-danger">{{ p.price }}đ</span>
+                {% endif %}
+                </p>
                     <a href="/product/{{ p.id }}/" class="btn btn-dark btn-sm mt-2">
                         Xem
                     </a>
                 </div>
-
+                <!-- BUTTON HOVER -->
+                <div class="add-cart-hover position-absolute w-100 text-center">
+                    <a href="/add-to-cart/{{ p.id }}/" class="btn btn-warning btn-sm">
+                        🛒 Thêm vào giỏ
+                    </a>
+                </div>    
             </div>
         </div>
     {% endfor %}
+</div>
+
+<div class="bg-dark text-white text-center p-5 rounded mb-5" data-aos="fade-up">
+    <h3>🎉 Đặt bánh ngay hôm nay</h3>
+    <p>Nhận ưu đãi hấp dẫn cho đơn hàng đầu tiên</p>
+    <a href="/cart/" class="btn btn-warning">Mua ngay</a>
 </div>
 
 {% endblock %}

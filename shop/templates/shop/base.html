@@ -4,19 +4,24 @@
     <title>Tiệm bánh</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">   
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"> 
     <style>
     .product-card {
+        border: none;
         transition: 0.3s;
     }
+
 
     .product-card:hover {
         transform: translateY(-5px);
     }
 
-    .product-img {
-        height: 200px;
-        object-fit: cover;
+    .product-card img {
+        border-radius: 10px;
+    }
+    .product-card .card-body {
+        padding: 10px;
     }
     </style>
 
@@ -25,22 +30,27 @@
 <body>
 
 <!-- MENU -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
     <div class="container">
 
         <!-- LOGO -->
-        <a class="navbar-brand" href="/">🍰 Kỳ Duyên Bakery</a>
-
-        <!-- SEARCH -->
-        <form class="d-flex mx-auto" method="GET" action="/" style="width:40%;">
-            <input class="form-control me-2" type="search" name="q" placeholder="Tìm bánh...">
-            <button class="btn btn-warning">Search</button>
-        </form>
-
-        <!-- CART -->
-        <a href="/cart/" class="btn btn-outline-light">
-            🛒 Giỏ hàng ({{ cart_count }})
+        <a class="navbar-brand fw-bold text-dark" href="/">
+            🍰 Kỳ Duyên Bakery
         </a>
+
+        <!-- MENU -->
+        <div class="ms-auto d-flex align-items-center">
+
+            <form class="d-flex me-3" method="GET" action="/">
+                <input class="form-control form-control-sm me-2" type="search" name="q" placeholder="Tìm bánh...">
+            </form>
+
+            <a href="/cart/" class="btn btn-outline-dark btn-sm">
+                🛒 ({{ cart_count }})
+            </a>
+
+        </div>
+
     </div>
 </nav>
 {% if messages %}
@@ -58,6 +68,17 @@ setTimeout(() => {
         el.style.display = 'none';
     });
 }, 2000);
+</script>
+
+<script>
+document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.querySelector('div[id^="btn-"]').style.display = 'block';
+    });
+    card.addEventListener('mouseleave', () => {
+        card.querySelector('div[id^="btn-"]').style.display = 'none';
+    });
+});
 </script>
 
 <!-- NỘI DUNG -->
