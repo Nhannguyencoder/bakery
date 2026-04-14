@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+<h3>📦 Tra cứu đơn hàng</h3>
+
+<form method="GET" class="mb-4">
+    <input type="text" name="phone" placeholder="Nhập số điện thoại" class="form-control" value="{{ phone }}">
+</form>
+
+{% for order in orders %}
+<div class="card mb-3">
+    <div class="card-body">
+
+        <h5>{{ order.name }} - {{ order.phone }}</h5>
+
+        <p>
+            Trạng thái:
+            {% if order.status == 'pending' %}
+                🟡 Chờ xử lý
+            {% elif order.status == 'shipping' %}
+                🚚 Đang giao
+            {% else %}
+                ✅ Hoàn thành
+            {% endif %}
+        </p>
+
+        <p>📅 {{ order.created_at }}</p>
+
+        <hr>
+
+        <ul>
+            {% for item in order.orderitem_set.all %}
+                <li>{{ item.product.name }} x {{ item.quantity }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+{% empty %}
+    <p>Không có đơn hàng</p>
+{% endfor %}
+
+{% endblock %}

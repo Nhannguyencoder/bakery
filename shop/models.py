@@ -22,13 +22,25 @@ class Product(models.Model):
 
 #Tạo model đơn hàng   
 class Order(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
     address = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    STATUS_CHOICES = [
+        ('pending', 'Chờ xử lý'),
+        ('shipping', 'Đang giao'),
+        ('done', 'Hoàn thành'),
+    ]
 
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.phone}"
+    def status_color(self):
+        if self.status == 'pending':
+            return "🟡 Chờ"
+        elif self.status == 'shipping':
+            return "🚚 Đang giao"
+        return "✅ Hoàn thành"
 
 #Lưu chi tiết sản phẩm trong đơn    
 class OrderItem(models.Model):

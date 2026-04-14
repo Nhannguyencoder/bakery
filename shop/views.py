@@ -148,3 +148,16 @@ def remove_from_cart(request, id):
 
     request.session['cart'] = cart
     return redirect('/cart/')
+
+#Lịch sử mua hàng
+def order_history(request):
+    phone = request.GET.get('phone')
+
+    orders = []
+    if phone:
+        orders = Order.objects.filter(phone=phone).order_by('-created_at')
+
+    return render(request, 'shop/orders.html', {
+        'orders': orders,
+        'phone': phone
+    })
