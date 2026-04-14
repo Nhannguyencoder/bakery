@@ -14,6 +14,8 @@ urlpatterns = [
     path('add-to-cart/<int:id>/', views.add_to_cart),
     path('cart/', views.view_cart),
     path('checkout/', views.checkout),
+    path('update-cart/<int:id>/<str:action>/', views.update_cart),
+    path('remove-from-cart/<int:id>/', views.remove_from_cart),
 ]
 
 if settings.DEBUG:

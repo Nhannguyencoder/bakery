@@ -1,32 +1,64 @@
-
 {% extends 'shop/base.html' %}
 {% load static %}
 
 {% block content %}
+
+<!-- BANNER -->
 <img src="{% static 'shop/banner.jpg' %}" 
      class="img-fluid mb-4"
      style="width:100%; max-height:300px; object-fit:cover;">
 
-<h1 class="text-center mb-4">🍰 Tiệm bánh của tôi</h1>
+<!-- HERO -->
+<div class="p-5 mb-4 bg-light rounded-3 text-center">
+    <h1>🍰 Tiệm bánh ngọt tươi mỗi ngày</h1>
+    <p>Ngon - Rẻ - Tươi mới</p>
+</div>
 
+<!-- CATEGORY -->
+<div class="mb-3">
+    <a href="/" class="badge bg-dark text-decoration-none me-1">
+        Tất cả
+    </a>
+
+    {% for c in categories %}
+        <a href="/?category={{ c.id }}" class="badge bg-primary me-1 text-decoration-none">
+            {{ c.name }}
+        </a>
+    {% endfor %}
+</div>
+
+<!-- PRODUCTS -->
 <div class="row">
     {% for p in products %}
-    <div class="col-6 col-md-3 mb-4">
-        <div class="card h-100 shadow-sm">
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card shadow-sm h-100 product-card position-relative">
 
-            <a href="/product/{{ p.id }}/">
-                <img src="{{ p.image.url }}" class="card-img-top" style="height:200px; object-fit:cover;">
-            </a>
+                <!-- BADGE -->
+                <span class="badge bg-danger position-absolute" 
+                        style="top:10px; left:10px;">
+                    HOT
+                </span>
 
-            <div class="card-body text-center">
-                <h5>
-                    <a href="/product/{{ p.id }}/">{{ p.name }}</a>
-                </h5>
-                <p class="text-danger fw-bold">{{ p.price }}đ</p>
+                <img src="{{ p.image.url }}" class="card-img-top product-img">
+
+                <div class="card-body text-center">
+                    <h6>{{ p.name }}</h6>
+
+                    <p class="text-danger fw-bold">
+                        {{ p.price }}đ
+                    </p>
+
+                    <a href="/add-to-cart/{{ p.id }}/" class="btn btn-warning btn-sm">
+                        🛒 Thêm vào giỏ
+                    </a>
+
+                    <a href="/product/{{ p.id }}/" class="btn btn-dark btn-sm mt-2">
+                        Xem
+                    </a>
+                </div>
+
             </div>
-
         </div>
-    </div>
     {% endfor %}
 </div>
 
