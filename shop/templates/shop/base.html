@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +35,9 @@
     <div class="container">
 
         <!-- LOGO -->
-        <a class="navbar-brand fw-bold text-dark" href="/">
-            🍰 Kỳ Duyên Bakery
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="{% static 'shop/logo.png' %}" alt="logo" style="height:80px; border-radius:60%; margin-right:40px;">
+            <span class="fw-bold text-dark">Kỳ Duyên Bakery</span>
         </a>
 
         <!-- MENU -->
@@ -103,8 +105,8 @@ document.querySelectorAll('.product-card').forEach(card => {
             <!-- CỘT 2 -->
             <div class="col-md-4">
                 <h6>Liên hệ</h6>
-                <p>📍 Đồng Tháp</p>
-                <p>📞 0909 123 456</p>
+                <p>📍 Tân Thuận Bình, Chợ Gao, Đồng Tháp</p>
+                <p>📞 093 821 5075</p>
                 <p>✉️ kyduyenbakery@gmail.com</p>
             </div>
 
