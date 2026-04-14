@@ -71,7 +71,7 @@
     <div class="row">
         {% for p in products %}
             {% if p.category.id == c.id %}
-                <div class="col-6 col-md-3 mb-4">
+                <div class="col-6 col-md-3 mb-4" data-aos="zoom-in">
                     <div class="card shadow-sm h-100">
 
                         <img src="{{ p.image.url }}" class="card-img-top product-img">
@@ -89,7 +89,7 @@
 {% endfor %}
 <div class="row">
     {% for p in products %}
-        <div class="col-6 col-md-3 mb-4">
+        <div class="col-6 col-md-3 mb-4" data-aos="zoom-in">
             <div class="card shadow-sm h-100 product-card position-relative">
 
                 <!-- BADGE -->

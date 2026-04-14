@@ -13,18 +13,39 @@
 <div class="container mt-5">
     <div class="row">
 
-        <div class="col-md-6">
-            <img src="{{ product.image.url }}" class="img-fluid">
+        <!-- ẢNH -->
+        <div class="col-md-6" data-aos="fade-right">
+            <img src="{{ product.image.url }}" class="img-fluid rounded shadow">
         </div>
 
-        <div class="col-md-6">
+        <!-- THÔNG TIN -->
+        <div class="col-md-6" data-aos="fade-left">
+
             <h2>{{ product.name }}</h2>
-            <h4 class="text-danger">{{ product.price }}đ</h4>
-            <a href="/add-to-cart/{{ product.id }}/" class="btn btn-primary">
+
+            <h4 class="text-danger my-3">
+                {{ product.price }}đ
+            </h4>
+
+            <p>
+                Bánh tươi mỗi ngày, nguyên liệu chất lượng cao, đảm bảo vệ sinh an toàn thực phẩm.
+            </p>
+            <span class="badge bg-danger mb-2">HOT</span>
+
+            <ul>
+                <li>✔ Bánh tươi mỗi ngày</li>
+                <li>✔ Không chất bảo quản</li>
+                <li>✔ Giao nhanh 2h</li>
+            </ul>
+            <!-- NÚT -->
+            <a href="/add-to-cart/{{ product.id }}/" class="btn btn-warning btn-lg mt-3">
                 🛒 Thêm vào giỏ
             </a>
-            <p>{{ product.description }}</p>
-            <a href="/" class="btn btn-secondary">← Quay lại</a>
+
+            <a href="/cart/" class="btn btn-dark btn-lg mt-3">
+                Mua ngay
+            </a>
+</ul>
         </div>
 
     </div>
