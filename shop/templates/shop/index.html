@@ -62,6 +62,31 @@
 </div>
 
 <!-- PRODUCTS -->
+<div class="text-center mb-4">
+    <h3>🔥 Sản phẩm nổi bật</h3>
+    <hr style="width:60px; border:2px solid red; margin:auto;">
+</div>
+{% for c in categories %}
+    <h4 class="mt-5">{{ c.name }}</h4>
+    <div class="row">
+        {% for p in products %}
+            {% if p.category.id == c.id %}
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card shadow-sm h-100">
+
+                        <img src="{{ p.image.url }}" class="card-img-top product-img">
+
+                        <div class="card-body text-center">
+                            <h6>{{ p.name }}</h6>
+                            <p class="text-danger">{{ p.price }}đ</p>
+                        </div>
+
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endfor %}
 <div class="row">
     {% for p in products %}
         <div class="col-6 col-md-3 mb-4">
