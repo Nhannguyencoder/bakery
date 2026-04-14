@@ -25,6 +25,9 @@ SECRET_KEY = 'django-insecure-+e5ue2b5#u_ga50!=vww)s%eqv_&!3oq8a5zmp$m6p(h)p!ef$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 ALLOWED_HOSTS = ['*']
 
 
@@ -101,6 +104,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dmx9cfahy',
+    'API_KEY': '838987561399323',
+    'API_SECRET': 'AY84mtQg4ZrdnUGVgHM-MVEzvY8',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
